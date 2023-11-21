@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logowanie</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Verdana', sans-serif;
+            background-image: url("../static/strategy.jpg");
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            opacity: 0.9;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+        }
+
+        .header {
+            text-align: center;
+            background-color: #FFA500;
+            color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            font-family: 'Verdana', sans-serif;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            margin: 5px;
+        }
+
+        .demo-button {
+            background-color: #333;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .login-form {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 10px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #FFA500; /* Pomarańczowy kolor */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #FF8C00; /* Ciemniejszy odcień pomarańczowego przy hoverze */
+        }
+
+        .login-form a {
+            text-decoration: none;
+        }
+
+        .register-button {
+            background-color: #FFA500; /* Pomarańczowy kolor */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            margin-top: 15px;
+        }
+
+        .register-button:hover {
+            background-color: #FF8C00; /* Ciemniejszy odcień pomarańczowego przy hoverze */
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>TSL 2.0</h1>
+    <p>Zarządzaj swoją firmą w jednym miejscu.</p>
+    <a href="#" class="demo-button">Zobacz demo</a>
+</div>
+
+<div class="container">
+    <div class="login-form">
+        <h2>Zaloguj się</h2>
+        <form th:action="@{/login}" method="post">
+            <label for="username">Nazwa użytkownika:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Hasło:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Zaloguj</button>
+        </form>
+
+        <p>Nie masz jeszcze konta? <a class="register-button" href="#" th:href="@{/register}">Zarejestruj się</a>.</p>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="contact-info">
+        <p>Skontaktuj się z nami:</p>
+        <p>Adres: ul. Przykładowa 123, 00-000 Warszawa</p>
+        <p>Email: kontakt@example.com</p>
+    </div>
+</div>
+</body>
+</html>
