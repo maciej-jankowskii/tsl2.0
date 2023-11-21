@@ -15,6 +15,7 @@ public class SecurityConfig {
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
                                 .antMatchers("/").permitAll()
+                                .antMatchers("/img/**").permitAll()
                                 .anyRequest().authenticated()
                 );
 
