@@ -4,7 +4,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -14,11 +17,27 @@ public class SecurityConfig {
         http
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
-                                .antMatchers("/").permitAll()
-                                .antMatchers("/img/**").permitAll()
+                                .antMatchers("/h2-console/**").permitAll()
+                                .antMatchers("/", "/login-form", "/img/**", "/style/**").permitAll()
                                 .anyRequest().authenticated()
-                );
+                )
+                .formLogin(login -> login
+                        .loginPage("/login").permitAll()
+                        .defaultSuccessUrl("/main-page", true)
+                        .failureUrl("/login?error=true"))
+                .logout(logout -> logout
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutSuccessUrl("/login-form")
+                        .permitAll())
+                .headers().frameOptions().sameOrigin()
+                .and().csrf().ignoringAntMatchers("/h2-console/**"); // Ignoruj CSRF dla ścieżki konsoli H2
 
         return http.build();
+
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 }

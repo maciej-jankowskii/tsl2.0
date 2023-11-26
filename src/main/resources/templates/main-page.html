@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona główna</title>
+    <link rel="stylesheet" href="../static/style/main-styles.css" th:href="@{style/main-styles.css}">
+</head>
+<body>
+
+<div class="header">
+    <h1>TSL 2.0</h1>
+    <p>Zarządzaj swoją firmą w jednym miejscu.</p>
+</div>
+
+<div class="nav-bar">
+    <div class="dropdown">
+        <button class="dropbtn">Magazynowanie</button>
+        <div class="dropdown-content">
+            <a href="#">Magazyny</a>
+            <a href="#">Towary</a>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropbtn">Spedycja</button>
+        <div class="dropdown-content">
+            <a href="#">Kontrahenci</a>
+            <a href="#">Ładunki</a>
+            <a href="#">Zlecenia</a>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropbtn">Transport</button>
+        <div class="dropdown-content">
+            <a href="#">Kierowcy</a>
+            <a href="#">Cieżarówki</a>
+            <a href="#">Zlecenia</a>
+            <a href="#">Trasy</a>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropbtn">Księgowość</button>
+        <div class="dropdown-content">
+            <a href="#">Faktury</a>
+            <a href="#">Windykacja</a>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropbtn">Zarząd</button>
+        <div class="dropdown-content">
+            <a href="#">Zarządzaj</a>
+        </div>
+    </div>
+</div>
+<div class="quick-access">
+    <p>Szybki dostęp</p>
+    <!-- Tutaj umieść szybki dostęp -->
+    <button>Profil pracownika</button>
+    <button>Czat z firmą</button>
+    <a th:href="@{logout}"><button>Wyloguj</button></a>
+</div>
+
+</body>
+</html>
