@@ -18,7 +18,8 @@ public class SecurityConfig {
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
                                 .antMatchers("/h2-console/**").permitAll()
-                                .antMatchers("/", "/login-form", "/img/**", "/style/**").permitAll()
+                                .antMatchers("/", "/login-form", "/main-info", "/demo", "/contact", "/img/**", "/style/**").permitAll()
+                                .antMatchers("/contact", "/submit-contact", "/contact-confirm").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
@@ -30,7 +31,7 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/login-form")
                         .permitAll())
                 .headers().frameOptions().sameOrigin()
-                .and().csrf().ignoringAntMatchers("/h2-console/**"); // Ignoruj CSRF dla ścieżki konsoli H2
+                .and().csrf().ignoringAntMatchers("/h2-console/**");
 
         return http.build();
 

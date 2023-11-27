@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informacje o Aplikacji</title>
+  <link rel="stylesheet" href="../../static/style/main-styles.css" th:href="@{style/main-styles.css}">
+</head>
+<body>
+<div class="header">
+  <a th:href="@{/}" class="tsl"><h1>TSL 2.0</h1></a>
+  <p>Zarządzaj swoją firmą w jednym miejscu.</p>
+</div>
+
+<div class="nav-bar">
+  <div class="dropdown">
+    <button class="dropbtn">O aplikacji</button>
+    <div class="dropdown-content">
+      <a th:href="@{/main-info}">Informacje</a>
+      <a th:href="@{/demo}">Zobacz demo</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropbtn">Kontakt</button>
+    <div class="dropdown-content">
+      <a th:href="@{/contact}">Formularz</a>
+    </div>
+  </div>
+</div>
+
+<div class="info-container">
+  <div class="main-info-content">
+    <h2>Informacje o Aplikacji</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac justo nec est pellentesque gravida. Vivamus consectetur mi et sem convallis, sit amet fringilla elit consectetur. Nulla facilisi. In id arcu nec nunc hendrerit commodo.</p>
+  </div>
+</div>
+<div>
+  <button class="log-button">
+    <a th:href="@{/login-form}">Logowanie</a>
+  </button>
+</div>
+<div class="footer">
+  <div class="footer-info">
+    <p>TSL 2.0 | &copy; Wszystkie prawa zastrzeżone</p>
+  </div>
+</div>
+
+</body>
+</html>

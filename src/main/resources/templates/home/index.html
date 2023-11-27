@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strona powitalna</title>
-    <link rel="stylesheet" href="../static/style/main-styles.css" th:href="@{style/main-styles.css}">
+    <link rel="stylesheet" href="../../static/style/main-styles.css" th:href="@{style/main-styles.css}">
 </head>
 <body>
-
 <div class="header">
-    <h1>TSL 2.0</h1>
+    <a th:href="@{/}" class="tsl"><h1>TSL 2.0</h1></a>
     <p>Zarządzaj swoją firmą w jednym miejscu.</p>
 </div>
 
@@ -17,16 +16,15 @@
     <div class="dropdown">
         <button class="dropbtn">O aplikacji</button>
         <div class="dropdown-content">
-            <a href="#">Informacje</a>
-            <a href="#">Zobacz demo</a>
+            <a th:href="@{/main-info}">Informacje</a>
+            <a th:href="@{/demo}">Zobacz demo</a>
         </div>
     </div>
 
     <div class="dropdown">
         <button class="dropbtn">Kontakt</button>
         <div class="dropdown-content">
-            <a href="#">Dane kontaktowe</a>
-            <a href="#">Formularz</a>
+            <a th:href="@{/contact}">Formularz</a>
         </div>
     </div>
 </div>

@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strona główna</title>
-    <link rel="stylesheet" href="../static/style/main-styles.css" th:href="@{style/main-styles.css}">
+    <link rel="stylesheet" href="../../static/style/main-styles.css" th:href="@{style/main-styles.css}">
 </head>
 <body>
 
 <div class="header">
-    <h1>TSL 2.0</h1>
+    <a th:href="@{/main-page}" class="tsl"><h1>TSL 2.0</h1></a>
     <p>Zarządzaj swoją firmą w jednym miejscu.</p>
 </div>
 
@@ -58,10 +58,9 @@
 </div>
 <div class="quick-access">
     <p>Szybki dostęp</p>
-    <!-- Tutaj umieść szybki dostęp -->
     <button>Profil pracownika</button>
     <button>Czat z firmą</button>
-    <a th:href="@{logout}"><button>Wyloguj</button></a>
+    <a th:href="@{/logout}"><button>Wyloguj</button></a>
 </div>
 
 </body>

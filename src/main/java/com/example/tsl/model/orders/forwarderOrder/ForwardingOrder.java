@@ -15,7 +15,6 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "forwarding_order")
 public class ForwardingOrder extends Order {
 

@@ -213,10 +213,6 @@ button:hover {
     color: black;
 }
 
-.dropdown {
-    display: inline-block;
-}
-
 .nav-bar a, .dropdown .dropbtn {
     display: inline-block;
 }
@@ -233,4 +229,66 @@ button:hover {
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+/*
+*/
+.info-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 50px auto;
+    width: 80%;
+}
+
+.main-info-content {
+    text-align: center;
+}
+.video-container {
+}
+
+.video-container iframe {
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.label-form{
+    font-weight: normal;
+    font-size: 13px;
+}
+
+.form-input {
+    width: 30%;
+    padding: 10px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    font-size: 13px;
+}
+
+.form-textarea {
+    width: 80%;
+    height: 200px;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+.form-button {
+    padding: 10px;
+    background-color: #FFA500;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+
+}
+
+.form-button:hover {
+    background-color: #FF8c00;
+}
+.tsl{
+    text-decoration: none;
+    color: white;
 }
