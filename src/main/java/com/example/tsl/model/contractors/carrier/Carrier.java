@@ -1,6 +1,7 @@
 package com.example.tsl.model.contractors.carrier;
 
 import com.example.tsl.model.contractors.baseEntity.Contractor;
+import com.example.tsl.model.invoices.carrierFv.InvoiceFromCarrier;
 import com.example.tsl.model.orders.forwarderOrder.ForwardingOrder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,8 @@ import java.util.List;
 public class Carrier extends Contractor {
     @OneToMany(mappedBy = "carrier")
     private List<ForwardingOrder> orders = new ArrayList<>();
+    @OneToMany(mappedBy = "carrier")
+    private List<InvoiceFromCarrier> carrierInvoices = new ArrayList<>();
     private LocalDate insuranceExpirationDate;
     private LocalDate licenceExpirationDate;
 }

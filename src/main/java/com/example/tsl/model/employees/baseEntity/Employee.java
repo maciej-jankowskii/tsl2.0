@@ -6,6 +6,7 @@ import com.example.tsl.model.roles.EmployeeRole;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -30,7 +31,7 @@ public class Employee {
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
-    private BigDecimal basicSalary;
+    private BigDecimal basicBruttoSalary;
     private LocalDate dateOfEmployment;
     @Enumerated(EnumType.STRING)
     private FormOfEmployment formOfEmployment;

@@ -292,3 +292,71 @@ button:hover {
     text-decoration: none;
     color: white;
 }
+
+.warehouse-table {
+    border-collapse: collapse;
+    margin-top: 20px;
+    width: 100%;
+    font-size: 12px;
+}
+
+.warehouse-table th, .warehouse-table td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.warehouse-table th {
+    background-color: #f2f2f2;
+}
+
+.warehouse-button {
+    background-color: #333;
+    color: white;
+    font-size: 12px;
+    padding: 7px 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    transition: background-color 0.3s;
+}
+
+.warehouse-button:hover {
+    background-color: #000;
+}
+
+.warehouse-form {
+    border-radius: 10px;
+    padding: 20px;
+    margin: 50px auto;
+    width: 40%;
+    font-size: 13px;
+}
+
+.warehouse-form h3 {
+    text-align: center;
+}
+
+.warehouse-input-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: normal;
+}
+
+.warehouse-select{
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.warehouse-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}

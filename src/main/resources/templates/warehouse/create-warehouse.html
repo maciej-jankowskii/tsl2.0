@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dodaj nowy magazyn</title>
+  <link rel="stylesheet" th:href="@{/style/main-styles.css}">
+</head>
+<body>
+
+<div class="header">
+  <a th:href="@{/main-page}" class="tsl"><h1>TSL 2.0</h1></a>
+  <p>Zarządzaj swoją firmą w jednym miejscu.</p>
+</div>
+
+<div class="info-container">
+  <div class="main-info-content">
+    <h3>Dodaj nowy magazyn</h3>
+    <form th:action="@{/warehouses/add-warehouse}" class="warehouse-form" method="post">
+      <h3>Adres magazynu</h3>
+      <label for="country" class="warehouse-input-label">Kraj:</label>
+      <input type="text" id="country" name="country" class="warehouse-input" required>
+
+      <label for="postalCode" class="warehouse-input-label">Kod pocztowy:</label>
+      <input type="text" id="postalCode" name="postalCode" class="warehouse-input" required>
+
+      <label for="city" class="warehouse-input-label">Miasto:</label>
+      <input type="text" id="city" name="city" class="warehouse-input" required>
+
+      <label for="street" class="warehouse-input-label">Ulica:</label>
+      <input type="text" id="street" name="street" class="warehouse-input" required>
+
+      <label for="homeNo" class="warehouse-input-label">Numer domu:</label>
+      <input type="text" id="homeNo" name="homeNo" class="warehouse-input" required>
+
+      <label for="flatNo" class="warehouse-input-label">Numer mieszkania:</label>
+      <input type="text" id="flatNo" name="flatNo" class="warehouse-input">
+      <h3>Szczegóły magazynu</h3>
+      <label for="typeOfGoods" class="warehouse-input-label">Typ towaru:</label>
+      <select id="typeOfGoods" name="typeOfGoods" class="warehouse-input" required>
+        <option value="NEUTRAL_GOODS_ON_PALLETS">Neutralny na paletach</option>
+        <option value="BULK_GOODS">Towar sypki</option>
+        <option value="REFRIGERATED_GOODS">Towar chłodniczy</option>
+        <option value="ADR_GOODS">ADR</option>
+        <option value="HIGH_VALUE_GOODS">Wysoka wartość</option>
+        <option value="CARTONS">Kartony/skrzynie</option>
+      </select>
+
+      <label for="crane" class="warehouse-input-label">Dźwig:</label>
+      <input type="checkbox" id="crane" name="crane" class="warehouse-input">
+
+      <label for="forklift" class="warehouse-input-label">Wózek widłowy:</label>
+      <input type="checkbox" id="forklift" name="forklift" class="warehouse-input">
+
+      <label for="costPer100SquareMeters" class="warehouse-input-label">Koszty składowania:</label>
+      <input type="text" id="costPer100SquareMeters" name="costPer100SquareMeters" class="warehouse-input" required>
+
+      <label for="availableArea" class="warehouse-input-label">Dostępna powierzchnia:</label>
+      <input type="text" id="availableArea" name="availableArea" class="warehouse-input" required>
+
+      <button type="submit">Dodaj magazyn</button>
+    </form>
+  </div>
+</div>
+
+<div class="quick-access">
+  <p>Szybki dostęp</p>
+  <button>Profil pracownika</button>
+  <button>Czat z firmą</button>
+  <a th:href="@{/logout}"><button>Wyloguj</button></a>
+</div>
+
+</body>
+</html>

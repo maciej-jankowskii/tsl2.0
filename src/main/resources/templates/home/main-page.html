@@ -17,8 +17,9 @@
     <div class="dropdown">
         <button class="dropbtn">Magazynowanie</button>
         <div class="dropdown-content">
-            <a href="#">Magazyny</a>
-            <a href="#">Towary</a>
+            <a th:href="@{/warehouses}">Magazyny</a>
+            <a th:href="@{/warehouses/goods}">Towary</a>
+            <a th:href="@{/warehouses/orders}">Zlecenia magazynowe</a>
         </div>
     </div>
 

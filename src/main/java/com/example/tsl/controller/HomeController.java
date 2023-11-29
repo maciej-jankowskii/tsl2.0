@@ -33,29 +33,29 @@ public class HomeController {
     }
 
     @GetMapping("/main-info")
-    public String mainInfoForm(){
+    public String mainInfoForm() {
         return "home/main-info";
     }
 
     @GetMapping("/demo")
-    public String demoInfoFrom(){
+    public String demoInfoFrom() {
         return "home/demo";
     }
 
     @GetMapping("/contact")
-    public String contactForm(Model model){
+    public String contactForm(Model model) {
         model.addAttribute("contactForm", new ContactForm());
         return "home/contact-form";
     }
 
     @PostMapping("/submit-contact")
-    public String submitContactForm(@ModelAttribute("contactForm") ContactForm contactForm){
+    public String submitContactForm(@ModelAttribute("contactForm") ContactForm contactForm) {
         contactFormService.processContactForm(contactForm);
         return "redirect:/contact-confirm";
     }
 
     @GetMapping("/contact-confirm")
-    public String contactConfirmation(Model model){
+    public String contactConfirmation(Model model) {
         model.addAttribute("contactForm", new ContactForm());
         return "home/contact-confirmation";
     }

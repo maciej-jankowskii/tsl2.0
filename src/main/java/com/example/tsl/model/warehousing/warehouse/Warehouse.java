@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
 @Getter
@@ -24,6 +23,6 @@ public class Warehouse {
     private Address address;
     private Boolean crane;
     private Boolean forklift;
-    private BigDecimal storageCosts;
+    private Double costPer100SquareMeters;
     private Double availableArea;
 }

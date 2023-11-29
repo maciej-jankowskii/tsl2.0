@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Towary</title>
+  <link rel="stylesheet" th:href="@{/style/main-styles.css}">
+</head>
+<body>
+
+<div class="header">
+  <a th:href="@{/main-page}" class="tsl"><h1>TSL 2.0</h1></a>
+  <p>Zarządzaj swoją firmą w jednym miejscu.</p>
+</div>
+
+<div class="nav-bar">
+  <div class="dropdown">
+    <button class="dropbtn">Magazynowanie</button>
+    <div class="dropdown-content">
+      <a th:href="@{/warehouses}">Magazyny</a>
+      <a th:href="@{/warehouses/goods}">Towary</a>
+      <a th:href="@{/warehouses/orders}">Zlecenia magazynowe</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropbtn">Spedycja</button>
+    <div class="dropdown-content">
+      <a href="#">Kontrahenci</a>
+      <a href="#">Ładunki</a>
+      <a href="#">Zlecenia</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropbtn">Transport</button>
+    <div class="dropdown-content">
+      <a href="#">Kierowcy</a>
+      <a href="#">Cieżarówki</a>
+      <a href="#">Zlecenia</a>
+      <a href="#">Trasy</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropbtn">Księgowość</button>
+    <div class="dropdown-content">
+      <a href="#">Faktury</a>
+      <a href="#">Windykacja</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropbtn">Zarząd</button>
+    <div class="dropdown-content">
+      <a href="#">Zarządzaj</a>
+    </div>
+  </div>
+</div>
+<div class="info-container">
+  <div class="main-info-content">
+    <h3>Towary</h3>
+    <a th:href="@{/warehouses/add-goods}" class="warehouse-button">Dodaj nowy towar</a>
+    <table class="warehouse-table">
+      <thead>
+      <tr>
+        <th>Typ towaru</th>
+        <th>Ilość</th>
+        <th>Etykieta</th>
+        <th>Wymagana powierzchnia</th>
+        <th>Przypisny do zlecenia</th>
+        <th>Akcja</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="goods : ${allGoods}">
+        <td th:text="${goods.typeOfGoods.description}"></td>
+        <td th:text="${goods.quantity}"></td>
+        <td th:text="${goods.label}"></td>
+        <td th:text="${goods.requiredArea}"></td>
+        <td th:text="${goods.assignedToOrder ? 'Tak' : 'Nie'}"></td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<div class="quick-access">
+  <p>Szybki dostęp</p>
+  <button>Profil pracownika</button>
+  <button>Czat z firmą</button>
+  <a th:href="@{/logout}"><button>Wyloguj</button></a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dodaj nowy towar</title>
+  <link rel="stylesheet" th:href="@{/style/main-styles.css}">
+</head>
+<body>
+
+<div class="header">
+  <a th:href="@{/main-page}" class="tsl"><h1>TSL 2.0</h1></a>
+  <p>Zarządzaj swoją firmą w jednym miejscu.</p>
+</div>
+
+<div class="info-container">
+  <div class="main-info-content">
+    <h3>Dodaj nowy towar</h3>
+    <form th:action="@{/warehouses/add-goods}" class="warehouse-form" method="post">
+      <h3>Szczegóły towaru</h3>
+      <label for="name" class="warehouse-input-label">Nazwa:</label>
+      <input type="text" id="name" name="name" class="warehouse-input">
+      <label for="typeOfGoods" class="warehouse-input-label">Typ towaru:</label>
+      <select id="typeOfGoods" name="typeOfGoods" class="warehouse-input" required>
+        <option value="NEUTRAL_GOODS_ON_PALLETS">Neutralny na paletach</option>
+        <option value="BULK_GOODS">Towar sypki</option>
+        <option value="REFRIGERATED_GOODS">Towar chłodniczy</option>
+        <option value="ADR_GOODS">ADR</option>
+        <option value="HIGH_VALUE_GOODS">Wysoka wartość</option>
+        <option value="CARTONS">Kartony/skrzynie</option>
+      </select>
+      <label for="quantity" class="warehouse-input-label">Ilość sztuk:</label>
+      <input type="text" id="quantity" name="quantity" class="warehouse-input">
+
+      <label for="label" class="warehouse-input-label">Etykieta:</label>
+      <input type="text" id="label" name="label" class="warehouse-input" required>
+
+      <label for="description" class="warehouse-input-label">Opis:</label>
+      <input type="text" id="description" name="description" class="warehouse-input" required>
+
+      <label for="requiredArea" class="warehouse-input-label">Wymagana powierzchnia:</label>
+      <input type="text" id="requiredArea" name="requiredArea" class="warehouse-input" required>
+
+      <button type="submit">Dodaj towar</button>
+    </form>
+  </div>
+</div>
+
+<div class="quick-access">
+  <p>Szybki dostęp</p>
+  <button>Profil pracownika</button>
+  <button>Czat z firmą</button>
+  <a th:href="@{/logout}"><button>Wyloguj</button></a>
+</div>
+
+</body>
+</html>

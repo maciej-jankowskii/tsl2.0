@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dodaj nowe zlecenie</title>
+  <link rel="stylesheet" th:href="@{/style/main-styles.css}">
+</head>
+<body>
+
+<div class="header">
+  <a th:href="@{/main-page}" class="tsl"><h1>TSL 2.0</h1></a>
+  <p>Zarządzaj swoją firmą w jednym miejscu.</p>
+</div>
+
+<div class="info-container">
+  <div class="main-info-content">
+    <h3>Dodaj nowe zlecenie</h3>
+    <form th:action="@{/warehouses/create-order}" class="warehouse-form" method="post">
+      <label for="warehouse" class="warehouse-input-label">Wybierz magazyn:</label>
+      <select class="warehouse-select" id="warehouse" name="warehouseId">
+        <option th:each="warehouse : ${allWarehouses}" th:value="${warehouse.id}" th:text="${warehouse.address.city + ' - ' + warehouse.address.street + '  | Typ: ' + warehouse.typeOfGoods.description}" />
+      </select>
+
+      <label for="customer" class="warehouse-input-label">Wybierz klienta:</label>
+      <select  class="warehouse-select" id="customer" name="customerId">
+        <option th:each="customer : ${allCustomers}" th:value="${customer.id}" th:text="${customer.fullName}" />
+      </select>
+
+      <label for="selectedGoods" class="warehouse-input-label">Wybierz towary:</label>
+      <select multiple class="warehouse-select" id="selectedGoods" name="selectedGoodsIds" required>
+        <option th:each="goods : ${allFreeGoods}" th:value="${goods.id}" th:text="${'ID: ' + goods.id + '. Etykieta: ' + goods.label + ' - ' + goods.typeOfGoods.description}" />
+      </select>
+
+      <label for="dateAdded" class="warehouse-input-label">Data dodania:</label>
+      <input type="date" id="dateAdded" name="dateAdded" pattern="\d{4}-\d{2}-\d{2}" required class="warehouse-input"/>
+
+      <label for="dateOfReturn" class="warehouse-input-label">Data zwrotu:</label>
+      <input type="date" id="dateOfReturn" name="dateOfReturn"  pattern="\d{4}-\d{2}-\d{2}" required class="warehouse-input"/>
+
+      <button type="submit">Utwórz Zlecenie</button>
+    </form>
+  </div>
+</div>
+
+<div class="quick-access">
+  <p>Szybki dostęp</p>
+  <button>Profil pracownika</button>
+  <button>Czat z firmą</button>
+  <a th:href="@{/logout}"><button>Wyloguj</button></a>
+</div>
+
+</body>
+</html>

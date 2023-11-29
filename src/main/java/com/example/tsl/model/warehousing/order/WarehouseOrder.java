@@ -6,10 +6,10 @@ import com.example.tsl.model.warehousing.warehouse.Warehouse;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 @Entity
 @Getter
@@ -25,10 +25,13 @@ public class WarehouseOrder {
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
-    @OneToMany
-    @MapKey(name = "label")
-    private Map<String, Goods> goods = new TreeMap<>();
+    @ManyToMany
+    @JoinTable(
+            name = "warehouse_order_goods",
+            joinColumns = @JoinColumn(name = "warehouse_order_id"),
+            inverseJoinColumns = @JoinColumn(name = "goods_id"))
+    private List<Goods> goods = new ArrayList<>();
     private LocalDate dateAdded;
     private LocalDate dateOfReturn;
-
+    private Double totalCosts;
 }

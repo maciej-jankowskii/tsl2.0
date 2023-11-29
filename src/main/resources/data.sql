@@ -43,10 +43,37 @@ CREATE TABLE IF NOT EXISTS employees_roles (
     FOREIGN KEY (role_id) REFERENCES employee_role(id)
     );
 
-INSERT INTO addresses (country, postal_code, city, street, home_no, flat_no)
-VALUES ('Poland', '00-000', 'Warsaw', 'Main Street', '123', '4');
+CREATE TABLE contractor (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(255),
+    short_name VARCHAR(255),
+    address_id INT,
+    vat_number VARCHAR(255),
+    description VARCHAR(255),
+    term_of_payment INT,
+    balance DECIMAL(10,2)
+);
 
--- Wstawianie roli
+CREATE TABLE customer (
+    id INT PRIMARY KEY,
+    payments_rating VARCHAR(255),
+    FOREIGN KEY (id) REFERENCES contractor(id)
+);
+
+
+INSERT INTO contractor (full_name, short_name, address_id, vat_number, description, term_of_payment, balance)
+VALUES ('ABC Internationale Spediotion GmbH', 'ABC Spedition', 2, 'DE1234567890', 'Opis klienta', 30, 0.00);
+
+
+INSERT INTO customer (id, payments_rating)
+VALUES (1, 'SMALL_DELAYS');
+
+INSERT INTO addresses (country, postal_code, city, street, home_no, flat_no)
+VALUES ('Polska', '00-000', 'Warszawa', 'ul. Nowa', '1', '44'),
+       ('Polska', '80-000', 'Gdańsk', 'ul. Stara', '5', '2'),
+       ('Polska', '70-000', 'Szczecin', 'ul. Testowa', '3', '70');
+
+
 INSERT INTO employee_role (name, description)
 VALUES ('FORWARDER', 'FORWARDER, ACCESS ONLY TO FORWARDER PANEL'),
        ('PLANNER', 'PLANER, ACCESS ONLY TO PLANNER PANEL'),
@@ -59,5 +86,5 @@ VALUES ('John', 'Doe', 'john@example.com', '{bcrypt}$2a$10$ekPcaMnn28t7GP7GSGcF3
 INSERT INTO employees_roles (employee_id, role_id)
 VALUES (1, 1);
 
-INSERT INTO management (management_role)
+INSERT INTO management(management_role)
 VALUES ('DIRECTOR');

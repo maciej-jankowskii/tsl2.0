@@ -1,7 +1,15 @@
 package com.example.tsl.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum ManagementRole {
-    BRANCH_MANAGER,
-    REGIONAL_MANAGER,
-    DIRECTOR
+    BRANCH_MANAGER("Kierownik oddziału"),
+    REGIONAL_MANAGER("Kierownik regionalny"),
+    DIRECTOR("Generalny dyrektor");
+    private String description;
+
+    ManagementRole(String description) {
+        this.description = description;
+    }
 }

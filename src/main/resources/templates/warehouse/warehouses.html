@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magazyny</title>
+    <link rel="stylesheet" href="../../static/style/main-styles.css" th:href="@{style/main-styles.css}">
+</head>
+<body>
+
+<div class="header">
+    <a th:href="@{/main-page}" class="tsl"><h1>TSL 2.0</h1></a>
+    <p>Zarządzaj swoją firmą w jednym miejscu.</p>
+</div>
+
+<div class="nav-bar">
+    <div class="dropdown">
+        <button class="dropbtn">Magazynowanie</button>
+        <div class="dropdown-content">
+            <a th:href="@{/warehouses}">Magazyny</a>
+            <a th:href="@{/warehouses/goods}">Towary</a>
+            <a th:href="@{/warehouses/orders}">Zlecenia magazynowe</a>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropbtn">Spedycja</button>
+        <div class="dropdown-content">
+            <a href="#">Kontrahenci</a>
+            <a href="#">Ładunki</a>
+            <a href="#">Zlecenia</a>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropbtn">Transport</button>
+        <div class="dropdown-content">
+            <a href="#">Kierowcy</a>
+            <a href="#">Cieżarówki</a>
+            <a href="#">Zlecenia</a>
+            <a href="#">Trasy</a>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropbtn">Księgowość</button>
+        <div class="dropdown-content">
+            <a href="#">Faktury</a>
+            <a href="#">Windykacja</a>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropbtn">Zarząd</button>
+        <div class="dropdown-content">
+            <a href="#">Zarządzaj</a>
+        </div>
+    </div>
+</div>
+<div class="info-container">
+    <div class="main-info-content">
+        <h3>Dostępne magazyny</h3>
+        <a th:href="@{/warehouses/create-warehouse}" class="warehouse-button">Utwórz nowy</a>
+        <table class="warehouse-table">
+            <thead>
+            <tr>
+                <th>Typ towaru</th>
+                <th>Lokalizacja</th>
+                <th>Dźwig</th>
+                <th>Wózek widłowy</th>
+                <th>Dostępna powierzchnia</th>
+                <th>Cena za 100mkw (PLN)</th>
+                <th>Akcja</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="warehouse : ${allWarehouses}">
+                <td th:text="${warehouse.typeOfGoods.description}"></td>
+                <td th:text="${warehouse.address.city}"></td>
+                <td th:text="${warehouse.crane != null ? (warehouse.crane ? 'Dostępny' : 'Brak') : ''}"></td>
+                <td th:text="${warehouse.forklift != null ? (warehouse.forklift ? 'Dostępny' : 'Brak') : ''}"></td>
+                <td th:text="${warehouse.availableArea}"></td>
+                <td th:text="${warehouse.costPer100SquareMeters}"></td>
+<!--                Mozna dodac tu 'Zleceia' Aby sprawdzic jakies sa dla danego magazynu zlecenia, mozna dorzucic edycje itd-->
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<div class="quick-access">
+    <p>Szybki dostęp</p>
+    <button>Profil pracownika</button>
+    <button>Czat z firmą</button>
+    <a th:href="@{/logout}"><button>Wyloguj</button></a>
+</div>
+
+</body>
+</html>

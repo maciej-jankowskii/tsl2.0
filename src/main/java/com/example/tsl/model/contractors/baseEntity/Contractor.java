@@ -27,6 +27,6 @@ public class Contractor {
     private String description;
     private Integer termOfPayment;
     private BigDecimal balance;
-    @OneToMany(mappedBy = "contractor")
+    @OneToMany
     private List<ContractorContactPerson> contactPersons = new ArrayList<>();
 }

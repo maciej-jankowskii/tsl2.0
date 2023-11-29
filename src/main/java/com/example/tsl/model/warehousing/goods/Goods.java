@@ -1,6 +1,7 @@
 package com.example.tsl.model.warehousing.goods;
 
 import com.example.tsl.enums.TypeOfGoods;
+import com.example.tsl.model.warehousing.order.WarehouseOrder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,5 +23,6 @@ public class Goods {
     private String label;
     private String description;
     private Double requiredArea;
+    private Boolean assignedToOrder;
 
 }

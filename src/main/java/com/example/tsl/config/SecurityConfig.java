@@ -20,6 +20,7 @@ public class SecurityConfig {
                                 .antMatchers("/h2-console/**").permitAll()
                                 .antMatchers("/", "/login-form", "/main-info", "/demo", "/contact", "/img/**", "/style/**").permitAll()
                                 .antMatchers("/contact", "/submit-contact", "/contact-confirm").permitAll()
+                                .antMatchers("/warehouses/**").hasAnyRole("FORWARDER", "PLANNER", "ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
