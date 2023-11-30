@@ -12,7 +12,7 @@ public enum OrderStatus {
     ENDED("Zakończone"),
     CANCELED("Anulowane");
 
-    private String description;
+    private final String description;
 
     OrderStatus(String description) {
         this.description = description;

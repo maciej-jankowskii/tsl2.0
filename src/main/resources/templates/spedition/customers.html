@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strona główna</title>
-    <link rel="stylesheet" href="../../static/style/main-styles.css" th:href="@{style/main-styles.css}">
+    <title>Klienci</title>
+    <link rel="stylesheet" th:href="@{/style/main-styles.css}">
 </head>
+
 <body>
 
 <div class="header">
@@ -58,6 +60,41 @@
         </div>
     </div>
 </div>
+
+<div class="info-container">
+    <div class="main-info-content">
+        <h3>Lista klientów</h3>
+        <a th:href="@{/contractors/create-customer}" class="warehouse-button">Dodaj nowego klienta</a>
+        <table class="warehouse-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Pełna nazwa</th>
+                <th>Skrócona nazwa</th>
+                <th>Adres</th>
+                <th>NIP</th>
+                <th>Termin płatności</th>
+                <th>Saldo</th>
+                <th>Ocena płatnika</th>
+                <th>Akcja</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="customer : ${allCustomers}">
+                <td th:text="${customer.id}"></td>
+                <td th:text="${customer.fullName}"></td>
+                <td th:text="${customer.shortName}"></td>
+                <td th:text="${customer.address.city + ', ' + customer.address.street}"></td>
+                <td th:text="${customer.vatNumber}"></td>
+                <td th:text="${customer.termOfPayment}"></td>
+                <td th:text="${customer.balance}"></td>
+                <td th:text="${customer.paymentsRating != null ? customer.paymentsRating.description : 'Brak'}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <div class="quick-access">
     <p>Szybki dostęp</p>
     <button>Profil pracownika</button>
@@ -66,4 +103,5 @@
 </div>
 
 </body>
+
 </html>

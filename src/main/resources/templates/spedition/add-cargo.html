@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dodaj nowy ładunek</title>
+  <link rel="stylesheet" th:href="@{/style/main-styles.css}">
+</head>
+
+<body>
+
+<div class="header">
+  <a th:href="@{/main-page}" class="tsl"><h1>TSL 2.0</h1></a>
+  <p>Zarządzaj swoją firmą w jednym miejscu.</p>
+</div>
+
+<div class="info-container">
+  <div class="main-info-content">
+    <h3>Dodaj nowy ładunek</h3>
+    <form th:action="@{/cargos/create-cargo}" class="warehouse-form" method="post">
+      <h3>Dodaj nowy ładunek</h3>
+      <label for="cargoNumber" class="warehouse-input-label">Numer ładunku:</label>
+      <input type="text" id="cargoNumber" name="cargoNumber" class="warehouse-input" required>
+
+      <label for="price" class="warehouse-input-label">Cena (netto):</label>
+      <input type="text" id="price" name="price" class="warehouse-input" min="0" required>
+
+      <label for="currency" class="warehouse-input-label">Waluta:</label>
+      <select id="currency" name="currency" class="warehouse-input" required>
+        <option value="PLN">PLN</option>
+        <option value="GBP">GBP</option>
+        <option value="EUR">EUR</option>
+        <option value="USD">USD</option>
+        <option value="CHF">CHF</option>
+      </select>
+
+      <label for="customerDTOId" class="warehouse-input-label">Klient:</label>
+      <select id="customerDTOId" name="customerDTO.id" class="warehouse-input" required>
+        <option th:each="customer : ${allCustomers}" th:value="${customer.id}" th:text="${customer.fullName}"></option>
+      </select>
+
+      <label for="loadingDate" class="warehouse-input-label">Data załadunku:</label>
+      <input type="date" id="loadingDate" name="loadingDate" class="warehouse-input" required>
+
+      <label for="unloadingDate" class="warehouse-input-label">Data rozładunku:</label>
+      <input type="date" id="unloadingDate" name="unloadingDate" class="warehouse-input" required>
+
+      <label for="loadingAddress" class="warehouse-input-label">Adres załadunku:</label>
+      <input type="text" id="loadingAddress" name="loadingAddress" class="warehouse-input" required>
+
+      <label for="unloadingAddress" class="warehouse-input-label">Adres rozładunku:</label>
+      <input type="text" id="unloadingAddress" name="unloadingAddress" class="warehouse-input" required>
+
+      <label for="goods" class="warehouse-input-label">Towar:</label>
+      <input type="text" id="goods" name="goods" class="warehouse-input" required>
+
+      <label for="description" class="warehouse-input-label">Opis:</label>
+      <input type="text" id="description" name="description" class="warehouse-input">
+
+      <button type="submit">Dodaj ładunek</button>
+    </form>
+  </div>
+</div>
+
+<div class="quick-access">
+  <p>Szybki dostęp</p>
+  <button>Profil pracownika</button>
+  <button>Czat z firmą</button>
+  <a th:href="@{/logout}"><button>Wyloguj</button></a>
+</div>
+
+</body>
+
+</html>

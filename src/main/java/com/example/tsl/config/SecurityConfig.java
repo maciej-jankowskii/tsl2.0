@@ -21,6 +21,8 @@ public class SecurityConfig {
                                 .antMatchers("/", "/login-form", "/main-info", "/demo", "/contact", "/img/**", "/style/**").permitAll()
                                 .antMatchers("/contact", "/submit-contact", "/contact-confirm").permitAll()
                                 .antMatchers("/warehouses/**").hasAnyRole("FORWARDER", "PLANNER", "ADMIN")
+                                .antMatchers("/cargos/**").hasAnyRole("FORWARDER", "PLANNER", "ADMIN")
+                                .antMatchers("/contractors/**").hasAnyRole("FORWARDER", "PLANNER", "ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(login -> login

@@ -1,29 +1,28 @@
 package com.example.tsl.model.cargos;
 
 import com.example.tsl.enums.Currency;
-import com.example.tsl.model.contractors.customer.Customer;
+import com.example.tsl.model.contractors.customer.CustomerDTO;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Entity
 @Getter
 @Setter
-@NoArgsConstructor
-public class Cargo {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CargoDTO {
     private Long id;
     private String cargoNumber;
     private BigDecimal price;
     @Enumerated(EnumType.STRING)
     private Currency currency;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateAdded;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate loadingDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate unloadingDate;
     private String loadingAddress;
     private String unloadingAddress;
@@ -31,8 +30,6 @@ public class Cargo {
     private String description;
     private Boolean assignedToOrder;
     private Boolean invoiced;
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+    private CustomerDTO customerDTO;
 
 }

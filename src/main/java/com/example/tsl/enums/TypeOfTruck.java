@@ -13,7 +13,7 @@ public enum TypeOfTruck {
     TIPPER("Standardowa wywrotka"),
     ROAD_TRAIN("Standardowy zestaw 7,7 + 7,7m");
 
-    private String description;
+    private final String description;
 
     TypeOfTruck(String description) {
         this.description = description;

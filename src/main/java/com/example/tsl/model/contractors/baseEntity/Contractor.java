@@ -1,6 +1,7 @@
 package com.example.tsl.model.contractors.baseEntity;
 
 import com.example.tsl.model.address.Address;
+import com.example.tsl.model.contractors.contactPerson.ContractorContactPerson;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,6 +28,6 @@ public class Contractor {
     private String description;
     private Integer termOfPayment;
     private BigDecimal balance;
-    @OneToMany
+    @OneToMany(mappedBy = "contractor")
     private List<ContractorContactPerson> contactPersons = new ArrayList<>();
 }

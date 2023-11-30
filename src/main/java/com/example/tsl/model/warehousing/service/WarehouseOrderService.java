@@ -3,10 +3,8 @@ package com.example.tsl.model.warehousing.service;
 import com.example.tsl.enums.TypeOfGoods;
 import com.example.tsl.exceptions.*;
 import com.example.tsl.model.contractors.customer.Customer;
-import com.example.tsl.model.contractors.mapper.CustomerMapper;
 import com.example.tsl.model.contractors.repository.CustomerRepository;
 import com.example.tsl.model.warehousing.goods.Goods;
-import com.example.tsl.model.warehousing.mapper.WarehouseMapper;
 import com.example.tsl.model.warehousing.mapper.WarehouseOrderMapper;
 import com.example.tsl.model.warehousing.order.WarehouseOrder;
 import com.example.tsl.model.warehousing.order.WarehouseOrderDTO;
@@ -23,18 +21,16 @@ import java.util.*;
 public class WarehouseOrderService {
     private final WarehouseOrderRepository warehouseOrderRepository;
     private final WarehouseOrderMapper warehouseOrderMapper;
-    private final WarehouseMapper warehouseMapper;
-    private final CustomerMapper customerMapper;
     private final WarehouseRepository warehouseRepository;
     private final CustomerRepository customerRepository;
     private final GoodsRepository goodsRepository;
     private final CostCalculatorService costCalculatorService;
 
-    public WarehouseOrderService(WarehouseOrderRepository warehouseOrderRepository, WarehouseOrderMapper warehouseOrderMapper, WarehouseMapper warehouseMapper, CustomerMapper customerMapper, WarehouseRepository warehouseRepository, CustomerRepository customerRepository, GoodsRepository goodsRepository, CostCalculatorService costCalculatorService) {
+    public WarehouseOrderService(WarehouseOrderRepository warehouseOrderRepository, WarehouseOrderMapper warehouseOrderMapper,
+                                 WarehouseRepository warehouseRepository, CustomerRepository customerRepository,
+                                 GoodsRepository goodsRepository, CostCalculatorService costCalculatorService) {
         this.warehouseOrderRepository = warehouseOrderRepository;
         this.warehouseOrderMapper = warehouseOrderMapper;
-        this.warehouseMapper = warehouseMapper;
-        this.customerMapper = customerMapper;
         this.warehouseRepository = warehouseRepository;
         this.customerRepository = customerRepository;
         this.goodsRepository = goodsRepository;
@@ -59,8 +55,6 @@ public class WarehouseOrderService {
         TypeOfGoods commonGoodsType = typeCompatibilityChecking(selectedGoods);
 
         double sum = calculationRequiredArea(selectedGoods);
-
-        checkingDuplicateGoodsInOrder(selectedGoodsId, order);
 
         checkingCompatibilityOfGoodsAndWarehouseTypes(warehouse, commonGoodsType);
 
@@ -87,12 +81,6 @@ public class WarehouseOrderService {
         });
     }
 
-    private static void checkingDuplicateGoodsInOrder(List<Long> selectedGoodsId, WarehouseOrder order) {
-        if (order.getGoods().stream().anyMatch(goods -> selectedGoodsId.contains(goods.getLabel()))) {
-            throw new NonUniqueLabelsException("Duplicate goods label in the order");
-        }
-    }
-
     private static void checkingRequiredArea(Warehouse warehouse, double sum) {
         if (warehouse.getAvailableArea() < sum){
             throw new InsufficientWarehouseSpaceException("Not enough space in the warehouse");
@@ -108,9 +96,8 @@ public class WarehouseOrderService {
     }
 
     private static double calculationRequiredArea(List<Goods> selectedGoods) {
-        double sum = selectedGoods.stream()
+        return selectedGoods.stream()
                 .mapToDouble(Goods::getRequiredArea).sum();
-        return sum;
     }
 
     private static TypeOfGoods typeCompatibilityChecking(List<Goods> selectedGoods) {

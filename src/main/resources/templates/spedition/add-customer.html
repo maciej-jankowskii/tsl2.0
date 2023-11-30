@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dodaj nowego kontrahenta</title>
+  <link rel="stylesheet" th:href="@{/style/main-styles.css}">
+</head>
+
+<body>
+
+<div class="header">
+  <a th:href="@{/main-page}" class="tsl"><h1>TSL 2.0</h1></a>
+  <p>Zarządzaj swoją firmą w jednym miejscu.</p>
+</div>
+
+<div class="info-container">
+  <div class="main-info-content">
+    <h3>Dodaj nowego klienta</h3>
+    <form th:action="@{/contractors/create-customer}" class="warehouse-form" method="post">
+      <h3>Adres klienta</h3>
+      <label for="country" class="warehouse-input-label">Kraj:</label>
+      <input type="text" id="country" name="country" class="warehouse-input" required>
+
+      <label for="postalCode" class="warehouse-input-label">Kod pocztowy:</label>
+      <input type="text" id="postalCode" name="postalCode" class="warehouse-input" required>
+
+      <label for="city" class="warehouse-input-label">Miasto:</label>
+      <input type="text" id="city" name="city" class="warehouse-input" required>
+
+      <label for="street" class="warehouse-input-label">Ulica:</label>
+      <input type="text" id="street" name="street" class="warehouse-input" required>
+
+      <label for="homeNo" class="warehouse-input-label">Numer domu:</label>
+      <input type="text" id="homeNo" name="homeNo" class="warehouse-input" required>
+
+      <label for="flatNo" class="warehouse-input-label">Numer mieszkania:</label>
+      <input type="text" id="flatNo" name="flatNo" class="warehouse-input">
+      <h3>Szczegóły klienta</h3>
+      <label for="fullName" class="warehouse-input-label">Pełna nazwa:</label>
+      <input type="text" id="fullName" name="fullName" class="warehouse-input" required>
+
+      <label for="shortName" class="warehouse-input-label">Skrócona nazwa:</label>
+      <input type="text" id="shortName" name="shortName" class="warehouse-input" required>
+
+      <label for="vatNumber" class="warehouse-input-label">NIP:</label>
+      <input type="text" id="vatNumber" name="vatNumber" class="warehouse-input" required>
+
+      <label for="description" class="warehouse-input-label">Opis:</label>
+      <input type="text" id="description" name="description" class="warehouse-input">
+
+      <label for="termOfPayment" class="warehouse-input-label">Termin płatności:</label>
+      <input type="text" id="termOfPayment" name="termOfPayment" class="warehouse-input">
+      <h3>Osoba kontaktowa</h3>
+      <label for="firstName" class="warehouse-input-label">Imię:</label>
+      <input type="text" id="firstName" name="firstName" class="warehouse-input" required>
+
+      <label for="lastName" class="warehouse-input-label">Nazwisko:</label>
+      <input type="text" id="lastName" name="lastName" class="warehouse-input" required>
+
+      <label for="email" class="warehouse-input-label">E-mail:</label>
+      <input type="text" id="email" name="email" class="warehouse-input" required>
+
+      <label for="telephone" class="warehouse-input-label">Telefon:</label>
+      <input type="text" id="telephone" name="telephone" class="warehouse-input" required>
+
+      <button type="submit">Dodaj kontrahenta</button>
+    </form>
+  </div>
+</div>
+
+<div class="quick-access">
+  <p>Szybki dostęp</p>
+  <button>Profil pracownika</button>
+  <button>Czat z firmą</button>
+  <a th:href="@{/logout}"><button>Wyloguj</button></a>
+</div>
+
+</body>
+
+</html>

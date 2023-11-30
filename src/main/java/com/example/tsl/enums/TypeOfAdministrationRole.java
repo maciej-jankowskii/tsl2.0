@@ -8,7 +8,7 @@ public enum TypeOfAdministrationRole {
     INVOICES("Faktury"),
     PAYMENTS("Płatności");
 
-    private String description;
+    private final String description;
 
     TypeOfAdministrationRole(String description) {
         this.description = description;

@@ -32,7 +32,7 @@
 
 <div class="info-container">
   <form class="contact-form" th:action="@{/submit-contact}" th:object="${contactForm}" method="post">
-    <h3 style="color: darkslategray">Formularz wysłany poprawnie, dziękujemy za kontat!</h3>
+    <h3 style="color: darkslategray">Formularz wysłany poprawnie, dziękujemy za kontakt!</h3>
     <label for="name" class="label-form">Imię i nazwisko:</label>
     <input type="text" id="name" name="name" class="form-input"  th:field="*{name}" placeholder="Imie i nazwisko" required>
 

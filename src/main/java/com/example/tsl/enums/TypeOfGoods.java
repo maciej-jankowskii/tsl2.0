@@ -11,7 +11,7 @@ public enum TypeOfGoods {
     HIGH_VALUE_GOODS("Wysoka wartość"),
     CARTONS("Kartony/skrzynie");
 
-    private String description;
+    private final String description;
 
     TypeOfGoods(String description) {
         this.description = description;

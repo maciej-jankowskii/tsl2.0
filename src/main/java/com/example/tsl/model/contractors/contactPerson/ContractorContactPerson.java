@@ -1,5 +1,6 @@
-package com.example.tsl.model.contractors.baseEntity;
+package com.example.tsl.model.contractors.contactPerson;
 
+import com.example.tsl.model.contractors.baseEntity.Contractor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

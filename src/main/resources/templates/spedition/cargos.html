@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magazyny</title>
-    <link rel="stylesheet" href="../../static/style/main-styles.css" th:href="@{style/main-styles.css}">
+    <title>Ładunki</title>
+    <link rel="stylesheet" th:href="@{/style/main-styles.css}">
 </head>
+
 <body>
 
 <div class="header">
@@ -58,37 +60,55 @@
         </div>
     </div>
 </div>
+
 <div class="info-container">
     <div class="main-info-content">
-        <h3>Dostępne magazyny</h3>
-        <a th:href="@{/warehouses/create-warehouse}" class="warehouse-button">Utwórz nowy</a>
+        <h3>Lista ładunków</h3>
+        <a th:href="@{/cargos/create-cargo}" class="warehouse-button">Dodaj nowy ładunek</a>
         <table class="warehouse-table">
             <thead>
             <tr>
-                <th>Typ towaru</th>
-                <th>Lokalizacja</th>
-                <th>Dźwig</th>
-                <th>Wózek widłowy</th>
-                <th>Dostępna powierzchnia</th>
-                <th>Cena za 100mkw (PLN)</th>
+                <th>Numer ładunku</th>
+                <th>Cena</th>
+                <th>Waluta</th>
+                <th>Data dodania</th>
+                <th>Klient</th>
+                <th>Data załadunku</th>
+                <th>Data rozładnku</th>
+                <th>Adres załadunku</th>
+                <th>Adres rozładunku</th>
+                <th>Towar</th>
+                <th>Przypisany do zlecenia</th>
+                <th>Zafakturowany</th>
                 <th>Akcja</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="warehouse : ${allWarehouses}">
-                <td th:text="${warehouse.typeOfGoods.description}"></td>
-                <td th:text="${warehouse.address.city}"></td>
-                <td th:text="${warehouse.crane != null ? (warehouse.crane ? 'Dostępny' : 'Brak') : ''}"></td>
-                <td th:text="${warehouse.forklift != null ? (warehouse.forklift ? 'Dostępny' : 'Brak') : ''}"></td>
-                <td th:text="${warehouse.availableArea}"></td>
-                <td th:text="${warehouse.costPer100SquareMeters}"></td>
-<!--                Mozna dodac tu 'Zleceia' Aby sprawdzic jakies sa dla danego magazynu zlecenia, mozna dorzucic edycje itd-->
+            <tr th:each="cargo : ${allCargos}">
+                <td th:text="${cargo.cargoNumber}"></td>
+                <td th:text="${cargo.price}"></td>
+                <td th:text="${cargo.currency}"></td>
+                <td th:text="${cargo.dateAdded}"></td>
+                <td th:text="${cargo.customer.fullName }"></td>
+                <td th:text="${cargo.loadingDate}"></td>
+                <td th:text="${cargo.unloadingDate}"></td>
+                <td th:text="${cargo.loadingAddress}"></td>
+                <td th:text="${cargo.unloadingAddress}"></td>
+                <td th:text="${cargo.goods}"></td>
+                <td>
+                    <span th:if="${cargo.assignedToOrder}">Przypisany do zlecenia</span>
+                    <span th:unless="${cargo.assignedToOrder}">Nie przypisano</span>
+                </td>
+                <td>
+                    <span th:if="${cargo.invoiced}">Zafakturowano</span>
+                    <span th:unless="${cargo.invoiced}">Nie zafakturowano</span>
+                </td>
             </tr>
             </tbody>
         </table>
-
     </div>
 </div>
+
 <div class="quick-access">
     <p>Szybki dostęp</p>
     <button>Profil pracownika</button>
@@ -97,4 +117,5 @@
 </div>
 
 </body>
+
 </html>

@@ -9,7 +9,7 @@ public enum PaymentsRating {
     LONG_DELAYS("Duże opóźnienia"),
     BLACK_LIST("Zablokowany");
 
-    private String description;
+    private final String description;
 
     PaymentsRating(String description) {
         this.description = description;

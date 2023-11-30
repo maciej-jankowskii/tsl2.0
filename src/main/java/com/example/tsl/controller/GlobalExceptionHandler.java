@@ -36,4 +36,16 @@ public class GlobalExceptionHandler {
     public String handleNonUniqueLabelsException(NonUniqueLabelsException ex) {
         return "errors/non-unique-label";
     }
+
+    @ExceptionHandler(ContractorNotFoundException.class)
+    public String handleContractorNotFoundException(ContractorNotFoundException ex) {
+        return "errors/no-contractor";
+    }
+
+    @ExceptionHandler(WrongLoadigDateException.class)
+    public String handleWrongLoadingDateException(WrongLoadigDateException ex) {
+        return "errors/wrong-date";
+    }
+
+
 }
