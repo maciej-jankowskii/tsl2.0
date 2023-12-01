@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.Entity;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
@@ -17,9 +18,10 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "transport_planners")
 public class TransportPlanner extends Employee {
-    @OneToMany
+    @OneToMany(mappedBy = "transportPlanner")
     private List<Truck> companyTrucks;
     @OneToMany
+    @JoinTable(name = "transport_planner_orders")
     private List<TransportOrder> transportOrders;
     private Double salaryBonus;  // + for example 600PLN per truck
 }

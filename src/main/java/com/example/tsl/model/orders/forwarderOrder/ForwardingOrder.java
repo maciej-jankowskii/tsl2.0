@@ -24,6 +24,7 @@ public class ForwardingOrder extends Order {
     @ManyToOne
     @JoinColumn(name = "carrier_id")
     private Carrier carrier;
+    @Enumerated(EnumType.STRING)
     private TypeOfTruck typeOfTruck;
     private String truckNumbers;
     private BigDecimal margin;

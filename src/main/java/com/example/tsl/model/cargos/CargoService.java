@@ -4,7 +4,6 @@ import com.example.tsl.exceptions.CustomerNotFoundException;
 import com.example.tsl.exceptions.WrongLoadigDateException;
 import com.example.tsl.model.contractors.customer.Customer;
 import com.example.tsl.model.contractors.repository.CustomerRepository;
-import com.example.tsl.model.contractors.service.ContractorContactPersonService;
 import com.example.tsl.model.contractors.service.CustomerService;
 import com.example.tsl.model.invoices.service.VatCalculatorService;
 import org.springframework.stereotype.Service;
@@ -13,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CargoService {
@@ -34,11 +34,14 @@ public class CargoService {
     public List<Cargo> findAll(){
         return cargoRepository.findAll();
     }
+
+    public Optional<Cargo> findById(Long id){
+        return cargoRepository.findById(id);
+    }
     @Transactional
     public CargoDTO addCargo(CargoDTO cargoDTO){
         Customer customer = extractCustomerFromCargoDTO(cargoDTO);
         Cargo cargo = cargoMapper.map(cargoDTO);
-
 
         addAdditionalDataForCargo(cargo, customer);
         checkingLoadingData(cargo);

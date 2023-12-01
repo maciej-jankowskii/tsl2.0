@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Przewoźnicy</title>
+    <title>Zlecenia spedycyjne</title>
     <link rel="stylesheet" th:href="@{/style/main-styles.css}">
 </head>
 
@@ -63,34 +63,35 @@
 
 <div class="info-container">
     <div class="main-info-content">
-        <h3>Lista przewoźników</h3>
-        <a th:href="@{/contractors/create-carrier}" class="warehouse-button">Dodaj nowego przewoźnika</a>
+        <h3>Lista zleceń</h3>
+        <a th:href="@{/orders/create-forwarding-order}" class="warehouse-button">Dodaj nowe zlecenie</a>
         <table class="warehouse-table">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Pełna nazwa</th>
-                <th>Skrócona nazwa</th>
-                <th>Adres</th>
-                <th>NIP</th>
-                <th>Termin płatności</th>
-                <th>Saldo</th>
-                <th>Ubezpieczenie</th>
-                <th>Licencja</th>
+                <th>Numer ładunku</th>
+                <th>Data dodania</th>
+                <th>Cena</th>
+                <th>Waluta</th>
+                <th>Przewoźnik</th>
+                <th>Marża</th>
+                <th>Zafakturowane</th>
+                <th>Status</th>
                 <th>Akcja</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="carrier : ${allCarriers}">
-                <td th:text="${carrier.id}"></td>
-                <td th:text="${carrier.fullName}"></td>
-                <td th:text="${carrier.shortName}"></td>
-                <td th:text="${carrier.address.city + ', ' + carrier.address.street}"></td>
-                <td th:text="${carrier.vatNumber}"></td>
-                <td th:text="${carrier.termOfPayment}"></td>
-                <td th:text="${carrier.balance}"></td>
-                <td th:text="${carrier.insuranceExpirationDate}"></td>
-                <td th:text="${carrier.licenceExpirationDate}"></td>
+            <tr th:each="order : ${allOrdersByForwarder}">
+                <td th:text="${order.orderNumber}"></td>
+                <td th:text="${order.dateAdded}"></td>
+                <td th:text="${order.price}"></td>
+                <td th:text="${order.currency}"></td>
+                <td th:text="${order.carrier.fullName}"></td>
+                <td th:text="${order.margin}"></td>
+                <td>
+                    <span th:if="${order.isInvoiced}">Zafakturowano</span>
+                    <span th:unless="${order.isInvoiced}">Nie zafakturowano</span>
+                </td>
+                <td th:text="${order.orderStatus.description}"></td>
             </tr>
             </tbody>
         </table>
@@ -105,4 +106,5 @@
 </div>
 
 </body>
+
 </html>

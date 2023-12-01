@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CarrierService {
@@ -28,7 +29,9 @@ public class CarrierService {
     private final ContractorContactPersonMapper contractorContactPersonMapper;
     private final ContractorContactPersonRepository contractorContactPersonRepository;
 
-    public CarrierService(CarrierRepository carrierRepository, CarrierMapper carrierMapper, AddressMapper addressMapper, AddressRepository addressRepository, ContractorContactPersonMapper contractorContactPersonMapper, ContractorContactPersonRepository contractorContactPersonRepository) {
+    public CarrierService(CarrierRepository carrierRepository, CarrierMapper carrierMapper, AddressMapper addressMapper,
+                          AddressRepository addressRepository, ContractorContactPersonMapper contractorContactPersonMapper,
+                          ContractorContactPersonRepository contractorContactPersonRepository) {
         this.carrierRepository = carrierRepository;
         this.carrierMapper = carrierMapper;
         this.addressMapper = addressMapper;
@@ -39,6 +42,9 @@ public class CarrierService {
 
     public List<Carrier> findAll() {
         return carrierRepository.findAll();
+    }
+    public Optional<Carrier> findById(Long id){
+        return carrierRepository.findById(id);
     }
 
     @Transactional

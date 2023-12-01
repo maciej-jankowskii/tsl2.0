@@ -1,5 +1,6 @@
 package com.example.tsl.model.employees.service;
 
+import com.example.tsl.model.employees.baseEntity.Employee;
 import com.example.tsl.model.employees.baseEntity.EmployeeDTO;
 import com.example.tsl.model.employees.baseEntity.EmployeeMapper;
 import com.example.tsl.model.employees.repository.EmployeeRepository;
@@ -18,6 +19,10 @@ public class EmployeeService {
 
     public Optional<EmployeeDTO> findEmployeeByEmail(String email){
         return employeeRepository.findByEmail(email).map(EmployeeMapper::map);
+    }
+
+    public Optional<Employee> findByEmail(String email){
+        return employeeRepository.findByEmail(email);
     }
 
 }

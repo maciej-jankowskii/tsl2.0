@@ -28,7 +28,13 @@ CREATE TABLE IF NOT EXISTS employees (
     form_of_employment VARCHAR(255),
     contract_expiry_date DATE,
     FOREIGN KEY (address_id) REFERENCES addresses(id)
-    );
+);
+
+CREATE TABLE IF NOT EXISTS forwarders (
+    id INT PRIMARY KEY,
+    extra_percentage DOUBLE,
+    FOREIGN KEY (id) REFERENCES employees(id)
+);
 
 CREATE TABLE IF NOT EXISTS management (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -71,6 +77,7 @@ VALUES (1, 'SMALL_DELAYS');
 INSERT INTO addresses (country, postal_code, city, street, home_no, flat_no)
 VALUES ('Polska', '00-000', 'Warszawa', 'ul. Nowa', '1', '44'),
        ('Polska', '80-000', 'Gdańsk', 'ul. Stara', '5', '2'),
+       ('Polska', '60-000', 'Poznań', 'ul. Testowa', '10', '1A'),
        ('Polska', '70-000', 'Szczecin', 'ul. Testowa', '3', '70');
 
 
@@ -81,10 +88,19 @@ VALUES ('FORWARDER', 'FORWARDER, ACCESS ONLY TO FORWARDER PANEL'),
        ('ADMIN', 'ADMIN, ACCESS TO ALL PANELS');
 
 INSERT INTO employees (first_name, last_name, email, password, telephone, address_id, basic_salary, date_of_employment, form_of_employment, contract_expiry_date)
-VALUES ('John', 'Doe', 'john@example.com', '{bcrypt}$2a$10$ekPcaMnn28t7GP7GSGcF3uhe2xx3YVMr.FrC1B/kUkzw2/UM0Anm2', '+123456789', 1, 10000.00, '2023-01-01', 'CONTRACT_OF_EMPLOYMENT', null);
+VALUES ('John', 'Doe', 'john@example.com', '{bcrypt}$2a$10$ekPcaMnn28t7GP7GSGcF3uhe2xx3YVMr.FrC1B/kUkzw2/UM0Anm2', '+123456789', 1, 10000.00, '2023-01-01', 'CONTRACT_OF_EMPLOYMENT', null),
+       ('Forwarder', 'Forwarder', 'forwarder@example.com', '{bcrypt}$2a$10$ekPcaMnn28t7GP7GSGcF3uhe2xx3YVMr.FrC1B/kUkzw2/UM0Anm2', '+123456789', 4, 5000.00, '2023-01-01', 'CONTRACT_OF_EMPLOYMENT', null),
+       ('Forwarder2', 'Forwarder', 'forwarder2@example.com', '{bcrypt}$2a$10$ekPcaMnn28t7GP7GSGcF3uhe2xx3YVMr.FrC1B/kUkzw2/UM0Anm2', '+123456789', 3, 5000.00, '2023-01-01', 'CONTRACT_OF_EMPLOYMENT', null);
 
 INSERT INTO employees_roles (employee_id, role_id)
-VALUES (1, 1);
+VALUES (1, 1),
+       (1, 4),
+       (2, 1),
+       (3, 1);
 
 INSERT INTO management(management_role)
 VALUES ('DIRECTOR');
+
+INSERT INTO forwarders (id, extra_percentage)
+VALUES (2, 20.0),
+       (3, 20.0);

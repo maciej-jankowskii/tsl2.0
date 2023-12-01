@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dodaj nowe zlecenie spedycyjne</title>
+  <link rel="stylesheet" th:href="@{/style/main-styles.css}">
+</head>
+
+<body>
+
+<div class="header">
+  <a th:href="@{/main-page}" class="tsl"><h1>TSL 2.0</h1></a>
+  <p>Zarządzaj swoją firmą w jednym miejscu.</p>
+</div>
+
+<div class="info-container">
+  <div class="main-info-content">
+    <h3>Dodaj nowe zlecenie spedycyjne</h3>
+    <form th:action="@{/orders/create-forwarding-order}" class="warehouse-form" method="post">
+
+      <label for="orderNumber" class="warehouse-input-label">Numer zlecenia:</label>
+      <input type="text" id="orderNumber" name="orderNumber" class="warehouse-input" required>
+
+      <label for="cargo" class="warehouse-input-label">Wybierz ładunek:</label>
+      <select id="cargo" name="cargo.id" class="warehouse-input" required>
+        <option th:each="cargo : ${allCargos}" th:unless="${cargo.assignedToOrder}" th:value="${cargo.id}" th:text="${cargo.cargoNumber}"></option>
+      </select>
+
+      <label for="price" class="warehouse-input-label">Cena:</label>
+      <input type="text" id="price" name="price" class="warehouse-input" required>
+
+      <label for="carrier" class="warehouse-input-label">Wybierz przewoźnika:</label>
+      <select id="carrier" name="carrier.id" class="warehouse-input" required>
+        <option th:each="carrier : ${allCarriers}" th:value="${carrier.id}" th:text="${carrier.fullName}"></option>
+      </select>
+
+      <label for="typeOfTruck" class="warehouse-input-label">Typ pojazdu:</label>
+      <select id="typeOfTruck" name="typeOfTruck" class="warehouse-input" required>
+        <option value="BOX">Skrzynia</option>
+        <option value="FRIGO">Chłodnia</option>
+        <option value="FLATBED">Platforma</option>
+        <option value="TAUTLINER">Firanka</option>
+        <option value="MEGA">MEGA</option>
+        <option value="TANKER">Cysterna</option>
+        <option value="TIPPER">Wywrotka</option>
+        <option value="ROAD_TRAIN">Zestaw</option>
+      </select>
+
+      <label for="truckNumbers" class="warehouse-input-label">Numer pojazdu:</label>
+      <input type="text" id="truckNumbers" name="truckNumbers" class="warehouse-input" required>
+
+      <button type="submit">Dodaj zlecenie przewozowe</button>
+    </form>
+  </div>
+</div>
+
+<div class="quick-access">
+  <p>Szybki dostęp</p>
+  <button>Profil pracownika</button>
+  <button>Czat z firmą</button>
+  <a th:href="@{/logout}"><button>Wyloguj</button></a>
+</div>
+
+</body>
+
+</html>

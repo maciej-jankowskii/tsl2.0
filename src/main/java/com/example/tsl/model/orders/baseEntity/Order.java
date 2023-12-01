@@ -28,7 +28,8 @@ public class Order {
     private BigDecimal price;
     @Enumerated(EnumType.STRING)
     private Currency currency;
+    @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
-    private boolean isInvoiced;
+    private Boolean isInvoiced;
 
 }

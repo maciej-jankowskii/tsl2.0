@@ -47,5 +47,19 @@ public class GlobalExceptionHandler {
         return "errors/wrong-date";
     }
 
+    @ExceptionHandler(EmployeeNotFoundException.class)
+    public String handleEmployeeNotFoundException(EmployeeNotFoundException ex) {
+        return "errors/employee-error";
+    }
+
+    @ExceptionHandler(CarrierNotFoundException.class)
+    public String handleCarrierNotFoundException(CarrierNotFoundException ex) {
+        return "errors/carrier-error";
+    }
+
+    @ExceptionHandler(CargoNotFoundException.class)
+    public String handleCargoNotFoundException(CargoNotFoundException ex) {
+        return "errors/cargo-error";
+    }
 
 }
