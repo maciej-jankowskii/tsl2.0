@@ -1,21 +1,16 @@
-package com.example.tsl.model.invoices.baseEntity;
+package com.example.tsl.model.invoices.carrierFv;
 
+import com.example.tsl.model.contractors.carrier.CarrierDTO;
 import com.example.tsl.model.orders.forwarderOrder.ForwardingOrderDTO;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import javax.persistence.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)
-public class Invoice {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class InvoiceFromCarrierDTO {
     private Long id;
     private String invoiceNumber;
     private LocalDate invoiceDate;
@@ -23,4 +18,6 @@ public class Invoice {
     private BigDecimal nettoValue;
     private BigDecimal bruttoValue;
     private Boolean isPaid;
+    private ForwardingOrderDTO orderDTO;
+    private CarrierDTO carrierDTO;
 }

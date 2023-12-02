@@ -4,7 +4,6 @@ import com.example.tsl.model.cargos.Cargo;
 import com.example.tsl.model.cargos.CargoDTO;
 import com.example.tsl.model.cargos.CargoService;
 import com.example.tsl.model.contractors.customer.Customer;
-import com.example.tsl.model.contractors.service.ContractorContactPersonService;
 import com.example.tsl.model.contractors.service.CustomerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,8 +1,10 @@
-package com.example.tsl.controller;
+package com.example.tsl.exceptions.handler;
 
 import com.example.tsl.exceptions.*;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import java.nio.file.AccessDeniedException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -61,5 +63,7 @@ public class GlobalExceptionHandler {
     public String handleCargoNotFoundException(CargoNotFoundException ex) {
         return "errors/cargo-error";
     }
+
+
 
 }

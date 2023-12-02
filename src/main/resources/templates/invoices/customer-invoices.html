@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zlecenia magazynowe</title>
+  <title>Faktury klientów</title>
   <link rel="stylesheet" th:href="@{/style/main-styles.css}">
 </head>
+
 <body>
 
 <div class="header">
@@ -59,41 +61,39 @@
     </div>
   </div>
 </div>
+
 <div class="info-container">
   <div class="main-info-content">
-    <h3>Zlecenia magazynowe</h3>
-    <a th:href="@{/warehouses/create-order}" class="warehouse-button">Utwórz nowe zlecenie</a>
+    <h3>Lista faktur</h3>
+    <a th:href="@{/invoices/add-customer-invoice}" class="warehouse-button">Dodaj nową fakture</a>
     <table class="warehouse-table">
       <thead>
       <tr>
-        <th>Zlecenie</th>
-        <th>Nr. magazyu</th>
-        <th>Klient</th>
-        <th>Towary</th>
+        <th>Numer faktury</th>
         <th>Data dodania</th>
-        <th>Data zwrotu</th>
-        <th>Całkowity koszt</th>
+        <th>Termin płatności</th>
+        <th>Warotść brutto</th>
+        <th>Numer ładunku</th>
+        <th>Klient</th>
+        <th>Status</th>
         <th>Akcja</th>
       </tr>
       </thead>
       <tbody>
-      <tr th:each="orders : ${allOrders}">
-        <td th:text="${orders.id}"></td>
-        <td th:text="${orders.warehouse.id}"></td>
-        <td th:text="${orders.customer.fullName}"></td>
+      <tr th:each="invoice : ${allInvoices}">
+        <td th:text="${invoice.invoiceNumber}"></td>
+        <td th:text="${invoice.invoiceDate}"></td>
+        <td th:text="${invoice.dueDate}"></td>
+        <td th:text="${invoice.bruttoValue}"></td>
+        <td th:text="${invoice.cargo.cargoNumber}"></td>
+        <td th:text="${invoice.customer.fullName}"></td>
         <td>
-          <th:block th:each="goods, iter : ${orders.goods}">
-            <span th:text="${goods.label}"></span>
-            <span th:if="${!iter.last}">, </span>
-          </th:block>
+          <span th:if="${invoice.isPaid}">Zapłacona</span>
+          <span th:unless="${invoice.isPaid}">Nie zapłacona</span>
         </td>
-        <td th:text="${orders.dateAdded}"></td>
-        <td th:text="${orders.dateOfReturn}"></td>
-        <td th:text="${orders.totalCosts}"></td>
       </tr>
       </tbody>
     </table>
-
   </div>
 </div>
 
@@ -105,4 +105,5 @@
 </div>
 
 </body>
+
 </html>

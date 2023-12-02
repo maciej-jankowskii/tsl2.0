@@ -1,5 +1,7 @@
 package com.example.tsl.config;
 
+import com.example.tsl.exceptions.handler.CustomAccessDeniedHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,6 +14,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+    @Autowired
+    private CustomAccessDeniedHandler accessDeniedHandler;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -24,6 +28,7 @@ public class SecurityConfig {
                                 .antMatchers("/cargos/**").hasAnyRole("FORWARDER", "PLANNER", "ADMIN")
                                 .antMatchers("/contractors/**").hasAnyRole("FORWARDER", "PLANNER", "ADMIN")
                                 .antMatchers("/orders/**").hasAnyRole("FORWARDER", "PLANNER", "ADMIN")
+                                .antMatchers("/invoices/**").hasAnyRole("ACCOUNTANT", "ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
@@ -36,6 +41,7 @@ public class SecurityConfig {
                         .permitAll())
                 .headers().frameOptions().sameOrigin()
                 .and().csrf().ignoringAntMatchers("/h2-console/**");
+                http.exceptionHandling().accessDeniedHandler(accessDeniedHandler);
 
         return http.build();
 

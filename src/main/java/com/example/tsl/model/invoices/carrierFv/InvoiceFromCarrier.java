@@ -3,6 +3,7 @@ package com.example.tsl.model.invoices.carrierFv;
 import com.example.tsl.model.contractors.carrier.Carrier;
 import com.example.tsl.model.invoices.baseEntity.Invoice;
 import com.example.tsl.model.orders.baseEntity.Order;
+import com.example.tsl.model.orders.forwarderOrder.ForwardingOrder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +19,7 @@ import javax.persistence.OneToOne;
 public class InvoiceFromCarrier extends Invoice {
     @OneToOne
     @JoinColumn(name = "order_id")
-    private Order order;
+    private ForwardingOrder order;
     @ManyToOne
     @JoinColumn(name="carrier_id")
     private Carrier carrier;

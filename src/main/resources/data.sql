@@ -41,6 +41,11 @@ CREATE TABLE IF NOT EXISTS management (
     management_role VARCHAR(255),
     FOREIGN KEY (id) REFERENCES employees(id));
 
+CREATE TABLE IF NOT EXISTS accountants (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    type_of_role VARCHAR(255),
+    FOREIGN KEY (id) REFERENCES employees(id));
+
 CREATE TABLE IF NOT EXISTS employees_roles (
     employee_id BIGINT,
     role_id BIGINT,
@@ -78,7 +83,8 @@ INSERT INTO addresses (country, postal_code, city, street, home_no, flat_no)
 VALUES ('Polska', '00-000', 'Warszawa', 'ul. Nowa', '1', '44'),
        ('Polska', '80-000', 'Gdańsk', 'ul. Stara', '5', '2'),
        ('Polska', '60-000', 'Poznań', 'ul. Testowa', '10', '1A'),
-       ('Polska', '70-000', 'Szczecin', 'ul. Testowa', '3', '70');
+       ('Polska', '70-000', 'Szczecin', 'ul. Testowa', '3', '70'),
+       ('Polska', '60-000', 'Poznań', 'ul. Testowa', '5', '5');
 
 
 INSERT INTO employee_role (name, description)
@@ -90,13 +96,15 @@ VALUES ('FORWARDER', 'FORWARDER, ACCESS ONLY TO FORWARDER PANEL'),
 INSERT INTO employees (first_name, last_name, email, password, telephone, address_id, basic_salary, date_of_employment, form_of_employment, contract_expiry_date)
 VALUES ('John', 'Doe', 'john@example.com', '{bcrypt}$2a$10$ekPcaMnn28t7GP7GSGcF3uhe2xx3YVMr.FrC1B/kUkzw2/UM0Anm2', '+123456789', 1, 10000.00, '2023-01-01', 'CONTRACT_OF_EMPLOYMENT', null),
        ('Forwarder', 'Forwarder', 'forwarder@example.com', '{bcrypt}$2a$10$ekPcaMnn28t7GP7GSGcF3uhe2xx3YVMr.FrC1B/kUkzw2/UM0Anm2', '+123456789', 4, 5000.00, '2023-01-01', 'CONTRACT_OF_EMPLOYMENT', null),
-       ('Forwarder2', 'Forwarder', 'forwarder2@example.com', '{bcrypt}$2a$10$ekPcaMnn28t7GP7GSGcF3uhe2xx3YVMr.FrC1B/kUkzw2/UM0Anm2', '+123456789', 3, 5000.00, '2023-01-01', 'CONTRACT_OF_EMPLOYMENT', null);
+       ('Forwarder2', 'Forwarder', 'forwarder2@example.com', '{bcrypt}$2a$10$ekPcaMnn28t7GP7GSGcF3uhe2xx3YVMr.FrC1B/kUkzw2/UM0Anm2', '+123456789', 3, 5000.00, '2023-01-01', 'CONTRACT_OF_EMPLOYMENT', null),
+       ('Accountant', 'Accountant', 'acc@example.com', '{bcrypt}$2a$10$ekPcaMnn28t7GP7GSGcF3uhe2xx3YVMr.FrC1B/kUkzw2/UM0Anm2', '+123456789', 5, 3000.00, '2023-01-01', 'CONTRACT_OF_EMPLOYMENT', null);
 
 INSERT INTO employees_roles (employee_id, role_id)
 VALUES (1, 1),
        (1, 4),
        (2, 1),
-       (3, 1);
+       (3, 1),
+       (4, 3);
 
 INSERT INTO management(management_role)
 VALUES ('DIRECTOR');
@@ -104,3 +112,6 @@ VALUES ('DIRECTOR');
 INSERT INTO forwarders (id, extra_percentage)
 VALUES (2, 20.0),
        (3, 20.0);
+
+INSERT INTO accountants(type_of_role)
+VALUES ('INVOICES');
